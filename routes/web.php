@@ -19,3 +19,8 @@ Route::get('/', function () {
 })->name('main')->middleware('verified');
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+Route::get('/search/location', 'SearchByLocationController@index')->name('search_by_location');
+Route::get('/search/image', 'SearchByImageController@index')->name('search_by_image');
+
+Route::post('/search/location/calc', 'SearchByLocationController@calc');
