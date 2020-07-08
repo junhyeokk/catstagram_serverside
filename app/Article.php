@@ -11,6 +11,7 @@ class Article extends Model
     protected $table = 'articles';
     protected $fillable = [
         'cat_id',
+        'title',
         'writer',
         'content',
         'created_at',

@@ -1,5 +1,7 @@
 <?php
 
+use App\Article;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +24,22 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::get('/search/location', 'SearchByLocationController@index')->name('search_by_location');
 Route::get('/search/image', 'SearchByImageController@index')->name('search_by_image');
+
+Route::get('/bulletin/{cat_id}', function ($cat_id) {
+    $rows = Article::where('cat_id', '=', $cat_id)->paginate(10);
+
+//    Log::info($cat_id);
+    return view('bulletin_board', [
+        'rows' => $rows
+    ]);
+});
+
+Route::get('/article/{article_id}', function ($article_id) {
+    $row = Article::where('id', '=', $article_id)->get();
+
+    return view('article', [
+        'row' => $row
+    ]);
+});
 
 Route::post('/search/location/calc', 'SearchByLocationController@calc');

@@ -121,7 +121,7 @@ class SearchByLocationController extends Controller
             // flag가 false일 때 convex hull 알고리즘의 결과에 포함되었다는 뜻이므로 기존의 범위 내에 포함되지 않는다는 뜻임
 
             if ($flag) {
-                array_push($result, $cat->name);
+                array_push($result, array($cat->id, $cat->name));
             }
         }
 
