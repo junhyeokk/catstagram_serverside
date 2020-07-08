@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::get('/search/location', 'SearchByLocationController@index')->name('search_by_location');
-Route::get('/search/image', 'SearchByImageController@index')->name('search_by_image');
+Route::get('/search/image', 'SearchByImageController@index')->name('image.upload');
 
 Route::get('/bulletin/{cat_id}', function ($cat_id) {
     $rows = Article::where('cat_id', '=', $cat_id)->paginate(10);
@@ -43,3 +43,7 @@ Route::get('/article/{article_id}', function ($article_id) {
 });
 
 Route::post('/search/location/calc', 'SearchByLocationController@calc');
+
+//Route::get('image-upload', 'SearchByImageController@index')->name('image.upload');
+
+Route::post('image-upload', 'SearchByImageController@upload')->name('image.upload.post');
